@@ -34,37 +34,35 @@ $weights = $connect->query("SELECT weight FROM weights")
             <select name="cat" id="id">
                 <option value="all">Vse kategorii</option>
                 <?php foreach ($cats as $cat) { ?>
-                    <option value="<?=$cat['cat']?>"><?=$cat['cat']?></option>
+                    <option value="<?=$cat['cat']?>" <?php if ($_SESSION['cat'] == $cat['cat']) {echo 'selected';} ?> > <!--Условие на то  что бы сохранялась выбранное окно -->
+                        <?=$cat['cat']?>
+                    </option>
                 <? } ?>
             </select>
 
             <select name="color" id="color">
                 <option value="all">Vse color</option>
                 <?php foreach ($colors as $color) { ?>
-                    <option value="<?=$color['color']?>"><?=$color['color']?></option>
+                    <option value="<?=$color['color']?>" <?php if ($_SESSION['color'] == $color['color']) {echo 'selected';} ?> >
+                        <?=$color['color']?>
+                    </option>
                 <? } ?>
             </select>
 
             <select name="weight" id="weight">
                 <option value="all">Vse weight</option>
                 <?php foreach ($weights as $weight) { ?>
-                    <option value="<?=$weight['weight']?>"><?=$weight['weight']?></option>
+                    <option value="<?=$weight['weight']?>" <?php if ($_SESSION['weight'] == $weight['weight']) {echo 'selected';} ?> >
+                        <?=$weight['weight']?>
+                    </option>
                 <? } ?>
             </select>
         </div>
 
         <div class="row cards-block">
-            <?php foreach ($products as $product) { ?>
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-title"> <?=$product['cat'] ?> <?=$product['title']?> </div>
-                    <div class="card-body">
-                        <p class="lead">Cvet: <?=$product['color'] ?> </p>
-                        <p class="lead">Wes <?=$product['weight'] ?></p>
-                    </div>
-                </div>
-            </div>
-            <? } ?>
+            <?php
+            require_once 'actions/query.php' // Вывод карточек тем что выдал файл query.php
+            ?>
         </div>
 
     </div>
