@@ -5,7 +5,7 @@ $('select').on('change', function () {
 
     $.ajax({
         type: 'get',
-        data: key + '=' +value,
+        data: key + '=' + value,
         url: 'actions/query.php',
         success: function (res) {
             console.log('succ');
