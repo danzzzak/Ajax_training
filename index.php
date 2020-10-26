@@ -1,6 +1,18 @@
 <?php
 session_start();
 require_once 'db/db.php';
+
+$products = $connect->query("SELECT * FROM products")
+                ->fetchAll(PDO::FETCH_ASSOC); // Для удобного чтения массива
+
+$cats = $connect->query("SELECT cat FROM cats")
+    ->fetchAll(PDO::FETCH_ASSOC);
+
+$colors = $connect->query("SELECT color FROM colors")
+    ->fetchAll(PDO::FETCH_ASSOC);
+
+$weights = $connect->query("SELECT weight FROM weights")
+    ->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>
@@ -21,27 +33,38 @@ require_once 'db/db.php';
         <div class="select">
             <select name="cat" id="id">
                 <option value="all">Vse kategorii</option>
+                <?php foreach ($cats as $cat) { ?>
+                    <option value="<?=$cat['cat']?>>"><?=$cat['cat']?></option>
+                <? } ?>
             </select>
 
             <select name="color" id="color">
                 <option value="all">Vse color</option>
+                <?php foreach ($colors as $color) { ?>
+                    <option value="<?=$color['color']?>>"><?=$color['color']?></option>
+                <? } ?>
             </select>
 
             <select name="weight" id="weight">
                 <option value="all">Vse weight</option>
+                <?php foreach ($weights as $weight) { ?>
+                    <option value="<?=$weight['weight']?>>"><?=$weight['weight']?></option>
+                <? } ?>
             </select>
         </div>
 
         <div class="row">
+            <?php foreach ($products as $product) { ?>
             <div class="col-3">
                 <div class="card">
-                    <div class="card-title"></div>
+                    <div class="card-title"> <?=$product['cat'] ?> <?=$product['title']?> </div>
                     <div class="card-body">
-                        <p class="lead"></p>
-                        <p class="lead"></p>
+                        <p class="lead">Cvet: <?=$product['color'] ?> </p>
+                        <p class="lead">Wes <?=$product['weight'] ?></p>
                     </div>
                 </div>
             </div>
+            <? } ?>
         </div>
 
     </div>
