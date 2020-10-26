@@ -34,26 +34,26 @@ $weights = $connect->query("SELECT weight FROM weights")
             <select name="cat" id="id">
                 <option value="all">Vse kategorii</option>
                 <?php foreach ($cats as $cat) { ?>
-                    <option value="<?=$cat['cat']?>>"><?=$cat['cat']?></option>
+                    <option value="<?=$cat['cat']?>"><?=$cat['cat']?></option>
                 <? } ?>
             </select>
 
             <select name="color" id="color">
                 <option value="all">Vse color</option>
                 <?php foreach ($colors as $color) { ?>
-                    <option value="<?=$color['color']?>>"><?=$color['color']?></option>
+                    <option value="<?=$color['color']?>"><?=$color['color']?></option>
                 <? } ?>
             </select>
 
             <select name="weight" id="weight">
                 <option value="all">Vse weight</option>
                 <?php foreach ($weights as $weight) { ?>
-                    <option value="<?=$weight['weight']?>>"><?=$weight['weight']?></option>
+                    <option value="<?=$weight['weight']?>"><?=$weight['weight']?></option>
                 <? } ?>
             </select>
         </div>
 
-        <div class="row">
+        <div class="row cards-block">
             <?php foreach ($products as $product) { ?>
             <div class="col-3">
                 <div class="card">
@@ -68,6 +68,9 @@ $weights = $connect->query("SELECT weight FROM weights")
         </div>
 
     </div>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/ajax.js"></script>
 
 </body>
 </html>

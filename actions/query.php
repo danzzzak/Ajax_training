@@ -4,7 +4,7 @@ session_start();
 require_once '../db/db.php';
 
 
-foreach ($_GET as $key=>$value) {
+foreach ($_GET as $key=> $value) {
     $currentKey = $key;
     $currentValue = $value;
 }
@@ -14,7 +14,8 @@ $_SESSION[$currentKey] = $currentValue;
 // var_dump($_SESSION);
 
 $query = "SELECT * FROM products WHERE";
-foreach ($_SESSION as $key=>$value) {
+foreach ($_SESSION as $key => $value) {
+    echo $value;
     if ($value != 'all') {
         $query .= " $key='$value' AND";
     }
@@ -25,7 +26,7 @@ $query = trim($query, ' AND');
 
 echo $query;
 
-//$products = $connect->query($query)
-//    ->fetchAll(PDO::FETCH_ASSOC);
+$products = $connect->query($query)
+    ->fetchAll(PDO::FETCH_ASSOC);
 
-//var_dump($products);
+var_dump($products);
